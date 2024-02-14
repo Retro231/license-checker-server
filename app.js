@@ -3,16 +3,16 @@ import cors from "cors";
 import router from "./routes.js";
 import scheduleDailyTask from "./utils/scheduleCsvDonwloader.js";
 import dotenv from "dotenv";
-import { getCurrentDate } from "./helper/getCurrentDate.js";
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 9001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(router);
-dotenv.config();
 
 // Schedule the task for 2:30 AM every day
 scheduleDailyTask(0, 0);
