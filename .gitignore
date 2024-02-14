@@ -1,5 +1,6 @@
-# matches any files and directories with the name test
-docs/
+# matches any files and directories with the name docs
+docs
+
 # Logs
 logs
 *.log
