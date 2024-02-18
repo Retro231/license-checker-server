@@ -1,4 +1,4 @@
-import { getAllCsvData } from "../helper/getAllCsvData.js";
+const { getAllCsvData } = require("../helper/getAllCsvData.js");
 
 function paginate(data, pageIndex, pageSize = 20) {
   const totalPages = Math.ceil(data.length / pageSize);
@@ -10,7 +10,7 @@ function paginate(data, pageIndex, pageSize = 20) {
   return data.slice(startIndex, endIndex);
 }
 
-export const activeOrganizationController = async (req, res) => {
+const activeOrganizationController = async (req, res) => {
   const pageIndex = parseInt(req.params.pageIndex);
   const pageSize = parseInt(req.params.pageSize) || 20;
   const { activeOrg } = await getAllCsvData();
@@ -25,7 +25,7 @@ export const activeOrganizationController = async (req, res) => {
   });
 };
 
-export const newAddedOrganizationController = async (req, res) => {
+const newAddedOrganizationController = async (req, res) => {
   const pageIndex = parseInt(req.params.pageIndex);
   const pageSize = parseInt(req.params.pageSize) || 20;
   const { addedData } = await getAllCsvData();
@@ -40,7 +40,7 @@ export const newAddedOrganizationController = async (req, res) => {
   });
 };
 
-export const removedOrganizationController = async (req, res) => {
+const removedOrganizationController = async (req, res) => {
   const pageIndex = parseInt(req.params.pageIndex);
   const pageSize = parseInt(req.params.pageSize) || 20;
   const { removedData } = await getAllCsvData();
@@ -53,4 +53,10 @@ export const removedOrganizationController = async (req, res) => {
     totalItem: removedData.length,
     totalPages: Math.ceil(removedData.length / pageSize),
   });
+};
+
+module.exports = {
+  activeOrganizationController,
+  newAddedOrganizationController,
+  removedOrganizationController,
 };

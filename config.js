@@ -1,7 +1,7 @@
-import path from "path";
-import { getCurrentDate } from "./helper/getCurrentDate.js";
-import { getPreviousDate } from "./helper/getPreviousDate.js";
-import { getTwoDaysAgoDate } from "./helper/twoDaysAgoDate.js";
+const path = require("path");
+const { getCurrentDate } = require("./helper/getCurrentDate.js");
+const { getPreviousDate } = require("./helper/getPreviousDate.js");
+const { getTwoDaysAgoDate } = require("./helper/twoDaysAgoDate.js");
 
 const currentDate = getCurrentDate();
 const previousDate = getPreviousDate(currentDate);
@@ -18,8 +18,11 @@ console.log("twago", twoDaysAgoFilePath);
 console.log("prev", prevCsvFilePath);
 console.log("cur", currCsvFilePath);
 
-export const globalVariables = {
+// CommonJSModule.js
+const globalVariables = {
   twoDaysAgoFilePath,
   prevCsvFilePath,
   currCsvFilePath,
 };
+
+module.exports = { globalVariables };

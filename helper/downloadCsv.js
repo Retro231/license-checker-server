@@ -1,8 +1,8 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
-// import path from "path";
-import fs from "fs";
-import { getCurrentDate } from "./getCurrentDate.js";
+const axios = require("axios");
+const cheerio = require("cheerio");
+// const path =  require("path");
+const fs = require("fs");
+const { getCurrentDate } = require("./getCurrentDate.js");
 
 // const __filename = new URL(import.meta.url).pathname;
 // const __dirname = path.dirname(__filename);
@@ -23,7 +23,7 @@ const getUrl = async () => {
 };
 
 /** Use to donwload register-of-licensed-sponsors-workers list from official site */
-export const downloadCsvFile = async () => {
+exports.downloadCsvFile = async () => {
   console.log("i am in downlaod csv file func");
   const currentDate = getCurrentDate();
   const url = await getUrl();

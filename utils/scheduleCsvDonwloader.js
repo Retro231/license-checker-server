@@ -1,6 +1,6 @@
-import { globalVariables } from "../config.js";
-import { downloadCsvFile } from "../helper/downloadCsv.js";
-import { deleteFile } from "./deleteFileAsync.js";
+const { globalVariables } = require("../config.js");
+const { downloadCsvFile } = require("../helper/downloadCsv.js");
+const { deleteFile } = require("./deleteFileAsync.js");
 
 async function downloadSomething() {
   await downloadCsvFile();
@@ -35,4 +35,4 @@ async function scheduleDailyTask(hour, minute) {
   await scheduleDailyTask(hour, minute);
 }
 
-export default scheduleDailyTask;
+module.exports = scheduleDailyTask;

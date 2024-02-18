@@ -1,5 +1,5 @@
-import fs from "fs/promises";
-import { globalVariables } from "../config.js";
+const fs = require("fs/promises");
+const { globalVariables } = require("../config.js");
 
 const readCSV = async (filePath) => {
   const results = [];
@@ -69,7 +69,7 @@ function compareCSV(prevData, currData) {
  * @param pageSize,Default:20
  * @returns activeOrg, addedData,removedData,
  */
-export const getAllCsvData = async () => {
+exports.getAllCsvData = async () => {
   try {
     const prevData = await readCSV(globalVariables.prevCsvFilePath);
     const currData = await readCSV(globalVariables.currCsvFilePath);

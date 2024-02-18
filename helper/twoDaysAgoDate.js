@@ -1,4 +1,4 @@
-export function getTwoDaysAgoDate(inputDate) {
+exports.getTwoDaysAgoDate = (inputDate) => {
   // Split the input date string into day, month, and year
   const [day, month, year] = inputDate.split("-").map(Number);
 
@@ -25,4 +25,4 @@ export function getTwoDaysAgoDate(inputDate) {
   const formattedTwoDaysAgoDate = `${twoDaysAgoDayFormatted}-${twoDaysAgoMonthFormatted}-${twoDaysAgoYearFormatted}`;
 
   return formattedTwoDaysAgoDate;
-}
+};

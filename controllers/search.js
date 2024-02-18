@@ -1,8 +1,7 @@
-import csv from "csv-parser";
-import fs from "node:fs/promises";
-import path from "path";
-import { getData } from "./companyHouse.js";
-import { getCurrentDate } from "../helper/getCurrentDate.js";
+const fs = require("node:fs/promises");
+const path = require("path");
+const { getData } = require("./companyHouse.js");
+const { getCurrentDate } = require("../helper/getCurrentDate.js");
 
 const currentDate = getCurrentDate();
 
@@ -87,13 +86,14 @@ const capitalizeEachWord = (sentence) => {
 
 const getAdditoinalInfo = async (name) => {
   const response = await getData(name);
+  console.log("res:", response);
   const data = response.items;
   let uppercase = name.toUpperCase();
   let lowercase = name.toLowerCase();
   let capitalizedSentence = capitalizeEachWord(name);
 
   // return response;
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < data?.length; i++) {
     let title = data[i].title;
     if (
       title === uppercase ||
@@ -110,7 +110,7 @@ const getAdditoinalInfo = async (name) => {
 };
 
 /** search requested company name */
-export const serachController = async (req, res) => {
+const serachController = async (req, res) => {
   let additonalInfo = null;
   console.log("im in serachController");
   const name = decodeURIComponent(req.params.name);
@@ -162,3 +162,5 @@ export const serachController = async (req, res) => {
     res.json(null);
   }
 };
+
+module.exports = { serachController };

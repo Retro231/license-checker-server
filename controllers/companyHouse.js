@@ -1,7 +1,7 @@
-import axios from "axios";
+const axios = require("axios");
 
 /**Return list of company list */
-export const getData = async (name) => {
+const getData = async (name) => {
   const apiKey = process.env.COMPNAYHOUSE_KEY;
   // const companyId = "00000006";
   // const apiUrl = `https://api.company-information.service.gov.uk/company/${companyId}`;
@@ -16,17 +16,23 @@ export const getData = async (name) => {
 
   try {
     const response = await axios.get(apiUrl, config);
+    console.log(response);
     return response.data;
   } catch (error) {
     return error;
   }
 };
 
-export const companyHouseSearch = async (req, res) => {
+const companyHouseSearch = async (req, res) => {
   const name = decodeURIComponent(req.params.name);
   console.log(name);
   const data = await getData(name);
   if (data) {
     res.json({ data });
   }
+};
+
+module.exports = {
+  getData,
+  companyHouseSearch,
 };

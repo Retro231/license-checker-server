@@ -1,4 +1,4 @@
-export const getPreviousDate = (inputDate) => {
+exports.getPreviousDate = (inputDate) => {
   // Split the input date string into day, month, and year
   const [day, month, year] = inputDate.split("-").map(Number);
 

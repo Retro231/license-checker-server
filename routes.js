@@ -1,29 +1,26 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import {
+const {
   activeOrganizationController,
   newAddedOrganizationController,
   removedOrganizationController,
-} from "./controllers/allData.js";
-import { serachController } from "./controllers/search.js";
-import { checkCsvFile } from "./Middleware/checkCsvFile.js";
-import { suggestionController } from "./controllers/suggestion.js";
-import { companyHouseSearch } from "./controllers/companyHouse.js";
-import { newsfeedConroller } from "./controllers/newsFeed.js";
+} = require("./controllers/allData.js");
+const { serachController } = require("./controllers/search.js");
+const { checkCsvFile } = require("./Middleware/checkCsvFile.js");
+const { companyHouseSearch } = require("./controllers/companyHouse.js");
+const { newsfeedConroller } = require("./controllers/newsFeed.js");
 
 /** Routes */
-router.get("/company/:name", checkCsvFile, serachController);
+router.get("/:name", checkCsvFile, serachController);
 router.get("/activeOrg/:pageIndex/:pageSize?", activeOrganizationController);
 router.get(
   "/newAddedOrg/:pageIndex/:pageSize?",
   newAddedOrganizationController
 );
 router.get("/removedOrg/:pageIndex/:pageSize?", removedOrganizationController);
-router.get("/suggestions", checkCsvFile, suggestionController);
 router.get("/companyhouse/:name", companyHouseSearch);
-router.get("/newsfeed", newsfeedConroller);
-router.get("/", (req, res) => {
-  res.send("Hello Mr.Unknown");
-});
 
-export default router;
+// other routes
+router.get("/news/newsfeed", newsfeedConroller);
+
+module.exports = router;
